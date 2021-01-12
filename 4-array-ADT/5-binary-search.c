@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// The condition to do a binary search is that the array must be sorted
+/* The condition to do a binary search is that the array must be sorted.
+Time complexity: best case O(1), worst case O(log n), since it's a successive division.
+Taking, for example, an array with 16 elements: 16 = 2^4 -> 4 = log2 16 -> log2 n
+An array with 15 elements would be log2 (n+1)
+Average case (total time taken by all the possible cases, divided by the num of cases): log n */
 
 struct Array
 {
