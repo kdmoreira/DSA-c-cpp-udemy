@@ -11,6 +11,7 @@ struct Array
     int length;
 };
 
+// Displays the entire array
 void display(struct Array arr)
 {
     for (int i = 0; i < arr.size; i++)
@@ -20,16 +21,8 @@ void display(struct Array arr)
     printf("\n");
 }
 
-void append(struct Array *arr, int x)
-{
-    if (arr->length < arr->size)
-    {
-        arr->A[arr->length++] = x;
-    }
-}
-
-// Insert: insert a new element at a given index
-void insert(int index, int item, struct Array *arr)
+// Inserts a new item at a given index
+void insert(struct Array *arr, int index, int item)
 {
     if (index >= 0 && index <= arr->length)
     {
@@ -42,7 +35,7 @@ void insert(int index, int item, struct Array *arr)
     }
 }
 
-
+// Deletes item at a given index
 int delete_item(struct Array *arr, int index)
 {
     int x = 0;
@@ -60,14 +53,7 @@ int delete_item(struct Array *arr, int index)
     return 0;
 }
 
-void swap(int *x, int *y)
-{
-    int temp;
-    temp = *x;
-    *x = *y;
-    *y = temp;
-}
-
+// Searches a unique element (key) in the array and returns its index
 int linear_search(struct Array arr, int key)
 {
     for (int i = 0; i < arr.length; i++)
@@ -80,6 +66,8 @@ int linear_search(struct Array arr, int key)
     return -1;
 }
 
+/* Searches a unique element (key) in the array and returns its index
+The array must be sorted */
 int binary_search(struct Array arr, int key)
 {
     int lower = 0;
@@ -101,6 +89,33 @@ int binary_search(struct Array arr, int key)
         }
     }
     return -1;
+}
+
+// Sums all elements
+int sum(struct Array arr)
+{
+    int total = 0;
+    for (int i = 0; i < arr.length; i++)
+    {
+        total += arr.A[i];
+    }
+    return total;
+}
+
+void append(struct Array *arr, int x)
+{
+    if (arr->length < arr->size)
+    {
+        arr->A[arr->length++] = x;
+    }
+}
+
+void swap(int *x, int *y)
+{
+    int temp;
+    temp = *x;
+    *x = *y;
+    *y = temp;
 }
 
 int rec_bin_search(struct Array arr, int key, int lower, int higher)
@@ -169,17 +184,6 @@ int min(struct Array arr)
         }
     }
     return min;
-}
-
-// Sum: sums all elements
-int sum(struct Array arr)
-{
-    int total = 0;
-    for (int i = 0; i < arr.length; i++)
-    {
-        total += arr.A[i];
-    }
-    return total;
 }
 
 // Average: Sum of all elements divided by the number of elements
@@ -410,7 +414,7 @@ struct Array * difference_sorted(struct Array *arr1, struct Array *arr2) // For 
 int main(void) {
 
     struct Array arr1;
-    int choice, item, index;
+    int choice, item, index, sorted;
 
     printf("Enter the size of the array: ");
     scanf("%d", &arr1.size);
@@ -419,11 +423,11 @@ int main(void) {
     do
     {
         printf("Menu\n");
-        printf("1. Insert\n");
-        printf("2. Delete\n");
-        printf("3. Search\n");
-        printf("4. Sum\n");
-        printf("5. Display\n");
+        printf("1. Display\n");
+        printf("2. Insert\n");
+        printf("3. Delete\n");
+        printf("4. Search\n");
+        printf("5. Sum\n");
         printf("6. Exit\n");
 
         printf("Enter your choice: ");
@@ -431,11 +435,33 @@ int main(void) {
 
         switch(choice)
         {
-            case 1: printf("Enter an item and index: ");
-            scanf("%d%d", &item, &index);
-            insert(index, item, &arr1);
-            break;
-            case 5: display(arr1);
+            case 1: display(arr1);
+                break;
+            case 2: printf("Enter an item and index: ");
+                scanf("%d%d", &item, &index);
+                insert(&arr1, index, item);
+                break;
+            case 3: printf("Enter an index: ");
+                scanf("%d", &index);
+                delete_item(&arr1, index);
+                break;
+            case 4: printf("Is the array sorted? 0: No | 1: Yes: ");
+                scanf("%d", &sorted);
+                if (sorted == 0)
+                {
+                    printf("Enter the item: ");
+                    scanf("%d", &item);
+                    printf("Found at index: %d\n", linear_search(arr1, &item));
+                }
+                else
+                {
+                    printf("Enter the item: ");
+                    scanf("%d", &item);
+                    printf("Found at index: %d\n", binary_search(arr1, &item));
+                }
+                break;
+            case 5: printf("The sum is %d", sum(arr1));
+                break;
         }
     } while (choice < 6);
 
