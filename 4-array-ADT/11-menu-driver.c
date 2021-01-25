@@ -46,9 +46,9 @@ int delete_item(struct Array *arr, int index)
         for(i = index; i < arr->length - 1; i++)
         {
             arr->A[i] = arr->A[i + 1];
-            arr->length--;
-            return x;
         }
+        arr->length--;
+        return x;
     }
     return 0;
 }
@@ -70,11 +70,12 @@ int linear_search(struct Array arr, int key)
 The array must be sorted */
 int binary_search(struct Array arr, int key)
 {
+    int middle;
     int lower = 0;
     int higher = arr.length - 1;
     while (lower <= higher)
     {
-        int middle = (lower + higher) / 2;
+        middle = (lower + higher) / 2;
         if (arr.A[middle] == key)
         {
             return middle;
@@ -419,6 +420,8 @@ int main(void) {
     printf("Enter the size of the array: ");
     scanf("%d", &arr1.size);
     arr1.A = (int *)malloc(arr1.size * sizeof(int));
+    memset(arr1.A, 0, arr1.size*sizeof(int));
+    arr1.length = 0;
 
     do
     {
@@ -451,13 +454,13 @@ int main(void) {
                 {
                     printf("Enter the item: ");
                     scanf("%d", &item);
-                    printf("Found at index: %d\n", linear_search(arr1, &item));
+                    printf("Found at index: %d\n", linear_search(arr1, item));
                 }
                 else
                 {
                     printf("Enter the item: ");
                     scanf("%d", &item);
-                    printf("Found at index: %d\n", binary_search(arr1, &item));
+                    printf("Found at index: %d\n", binary_search(arr1, item));
                 }
                 break;
             case 5: printf("The sum is %d", sum(arr1));
