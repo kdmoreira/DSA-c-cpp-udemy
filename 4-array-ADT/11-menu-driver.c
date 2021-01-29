@@ -21,7 +21,7 @@ void display(struct Array arr)
     printf("\n");
 }
 
-// Inserts a new item at a given index
+// Inserts a new item at a given index that already contains a value
 void insert(struct Array *arr, int index, int item)
 {
     if (index >= 0 && index <= arr->length)
@@ -43,7 +43,7 @@ int delete_item(struct Array *arr, int index)
     if (index >= 0 && index < arr->length)
     {
         x = arr->A[index];
-        for(i = index; i < arr->length - 1; i++)
+        for(i = index; i < arr->length; i++)
         {
             arr->A[i] = arr->A[i + 1];
         }
@@ -103,6 +103,7 @@ int sum(struct Array arr)
     return total;
 }
 
+// Appends an element next to the last value in the array
 void append(struct Array *arr, int x)
 {
     if (arr->length < arr->size)
@@ -111,33 +112,13 @@ void append(struct Array *arr, int x)
     }
 }
 
+// Helper function that swaps elements
 void swap(int *x, int *y)
 {
     int temp;
     temp = *x;
     *x = *y;
     *y = temp;
-}
-
-int rec_bin_search(struct Array arr, int key, int lower, int higher)
-{
-    if (lower <= higher)
-    {
-        int middle = (lower + higher) / 2;
-        if (arr.A[middle] == key)
-        {
-            return middle;
-        }
-        else if (key < arr.A[middle])
-        {
-            return rec_bin_search(arr, key, lower, middle - 1);
-        }
-        else
-        {
-            return rec_bin_search(arr, key, middle + 1, higher);
-        }
-    }
-    return -1;
 }
 
 // Get: retrieves an element at the given index
@@ -199,8 +180,8 @@ float average(struct Array arr, int length)
     return (float) total / length;
 }
 
-// Reverse: one of the methods use an auxiliary array, O(n), here it will return the array
-struct Array * reverse(struct Array *arr) // void would only modify, but it works too
+// Reverse: one of the methods use an auxiliary array, O(n)
+void reverse(struct Array *arr)
 {
     int *B;
     B = (int *)malloc(arr->length * sizeof(int));
@@ -215,8 +196,8 @@ struct Array * reverse(struct Array *arr) // void would only modify, but it work
     return arr;
 }
 
-// Reverse: the other method is by swapping the elements
-struct Array * reverse_swap(struct Array *arr)
+// Reverse: this other method is by swapping the elements
+void reverse_swap(struct Array *arr)
 {
     int temp;
     for (int i = 0, j = arr->length - 1; i < arr->length; i++, j--)
@@ -431,7 +412,17 @@ int main(void) {
         printf("3. Delete\n");
         printf("4. Search\n");
         printf("5. Sum\n");
-        printf("6. Exit\n");
+        printf("6. Append\n");
+        printf("7. Get\n");
+        printf("8. Set\n");
+        printf("9. Max\n");
+        printf("10. Min\n");
+        printf("11. Average\n");
+        printf("12. Reverse\n");
+        printf("13. Reverse Swap\n");
+        printf("14. Insert Sort\n");
+        printf("15. Length\n");
+        printf("16. Exit\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -446,7 +437,7 @@ int main(void) {
                 break;
             case 3: printf("Enter an index: ");
                 scanf("%d", &index);
-                delete_item(&arr1, index);
+                printf("The deleted item is %d\n", delete_item(&arr1, index));
                 break;
             case 4: printf("Is the array sorted? 0: No | 1: Yes: ");
                 scanf("%d", &sorted);
@@ -463,11 +454,39 @@ int main(void) {
                     printf("Found at index: %d\n", binary_search(arr1, item));
                 }
                 break;
-            case 5: printf("The sum is %d", sum(arr1));
+            case 5: printf("The sum is %d\n", sum(arr1));
+                break;
+            case 6: printf("Enter the item: ");
+                scanf("%d", &item);
+                append(&arr1, item);
+                break;
+            case 7: printf("Enter an index: ");
+                scanf("%d", &index);
+                printf("Got: %d\n", get(arr1, index));
+                break;
+            case 8: printf("Enter the item: ");
+                scanf("%d", &item);
+                printf("Enter an index: ");
+                scanf("%d", &index);
+                set(&arr1, index, item);
+                break;
+            case 9: printf("Max: %d\n", max(arr1));
+                break;
+            case 10: printf("Min: %d\n", min(arr1));
+                break;
+            case 11: printf("Average: %.2f\n", average(arr1, arr1.length));
+                break;
+            case 12: reverse(&arr1);
+                break;
+            case 13: reverse_swap(&arr1);
+                break;
+            case 14: printf("Enter the item: ");
+                scanf("%d", &item);
+                insert_sort(&arr1, item);
+            case 15: printf("Length: %d\n", arr1.length);
                 break;
         }
-    } while (choice < 6);
-
+    } while (choice < 16);
 
     return 0;
 }
