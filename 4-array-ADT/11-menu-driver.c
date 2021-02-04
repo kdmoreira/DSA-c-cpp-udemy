@@ -421,8 +421,9 @@ int main(void) {
         printf("12. Reverse\n");
         printf("13. Reverse Swap\n");
         printf("14. Insert Sort\n");
-        printf("15. Length\n");
-        printf("16. Exit\n");
+        printf("15. Is it sorted?\n");
+        printf("16. Length\n");
+        printf("17. Exit\n");
 
         printf("Enter your choice: ");
         scanf("%d", &choice);
@@ -483,10 +484,12 @@ int main(void) {
             case 14: printf("Enter the item: ");
                 scanf("%d", &item);
                 insert_sort(&arr1, item);
-            case 15: printf("Length: %d\n", arr1.length);
+            case 15: printf("%d\n", is_sorted(arr1));
+                break;
+            case 16: printf("Length: %d\n", arr1.length);
                 break;
         }
-    } while (choice < 16);
+    } while (choice < 17);
 
     return 0;
 }
