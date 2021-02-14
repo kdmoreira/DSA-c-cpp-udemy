@@ -84,14 +84,14 @@ struct Node * transp_search(int num, struct Node *p)
 void create(int A[], int n)
 {
     struct Node *aux, *last;
-    first = (struct Node *)malloc(sizeof(struct Node *));
+    first = (struct Node *)malloc(sizeof(struct Node));
     first->data = A[0];
     first->next = NULL;
     last = first;
 
     for (int i = 1; i < n; i++)
     {
-        aux = (struct Node *)malloc(sizeof(struct Node *));
+        aux = (struct Node *)malloc(sizeof(struct Node));
         aux->data = A[i];
         aux->next = NULL;
         last->next = aux;
