@@ -2,12 +2,50 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Parentheses Matching using an array
+
 struct Stack
 {
     int size;
     int top;
     char *s;
 };
+
+void push(struct Stack *st, char c)
+{
+    if (st->top == st->size - 1)
+    {
+        printf("Stack overflow\n");
+    }
+    else
+    {
+        st->top++;
+        st->s[st->top] = c;
+    }
+}
+
+char pop(struct Stack *st)
+{
+    char x = -1;
+    if (st->top == -1)
+    {
+        printf("Stack underflow\n");
+    }
+    else
+    {
+        x = st->s[st->top];
+        st->top--;
+    }
+    return x;
+}
+
+int is_empty(struct Stack st)
+{
+    if (st.top == -1)
+        return 1;
+    else
+        return 0;
+}
 
 int is_balanced(char *exp)
 {
@@ -20,7 +58,6 @@ int is_balanced(char *exp)
         if (exp[i] == '(')
         {
             push(&st, exp[i]);
-            st.top++;
         }
         else if (exp[i] == ')')
         {
@@ -34,49 +71,11 @@ int is_balanced(char *exp)
     return is_empty(st) ? 1 : 0;
 }
 
-void push(struct Stack *st, char c) // O(1)
-{
-    if (st->top == st->size - 1)
-    {
-        printf("Stack overflow\n");
-    }
-    else
-    {
-        st->top++;
-        st->s[st->top] = c;
-    }
-}
-
-int pop(struct Stack *st)
-{
-    int popped = -1;
-    if (st->top == -1)
-    {
-        printf("Stack underflow\n");
-    }
-    else
-    {
-        popped = st->s[st->top];
-        st->top--;
-    }
-    return popped;
-}
-
-int is_empty(struct Stack st)
-{
-    if (st.top == -1)
-        return 1;
-    else
-        return 0;
-}
-
 int main(void)
 {
     char *exp = "((a+b)*(c-d))";
 
-    struct Stack st;
-
-    printf("%d", is_balanced(exp));
+    printf("%d\n", is_balanced(exp));
 
     return 0;
 }
