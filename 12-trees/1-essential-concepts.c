@@ -44,7 +44,23 @@ For the min. number of nodes we need a formula: n = 2h + 1
 If nodes are given:
 Max: h = (log base2 (n+1)) - 1
 Min: h = (n - 1)/2
-This means height is ranging from logarithmic to linear, similar to simple binary tree */
+This means height is ranging from logarithmic to linear, similar to simple binary tree.
+Internal vs External nodes: external nodes are greater than internal nodes by one: e = i + 1
+
+N-ary Trees:
+N stands for Nodes, it's a reference to the degree of the tree (every node can have at most N children)
+For example: nodes in a 3-ary tree can have from 0 up to 3 nodes, each node has a "capacity" of having
+3 children, even if they have less.
+Strict N-ary trees: every node can have either 0 children or exactly N children.
+Height vs Node:
+Height is given:
+Min: n = mh + 1 (m being the degree of the tree).
+Max: n = 1 + m + m^2 + m^3 + m^4...+m^h. This is: n = (m^(m+1)-1)/m-1
+Nodes are given:
+Min: h = (n-1)/m
+Max: h = log base m [n(m-1)+1] - 1
+Internal vs External Nodes: e = (m-1)i + 1
+*/
 
 int main(void)
 {
