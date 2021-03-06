@@ -60,6 +60,16 @@ Nodes are given:
 Min: h = (n-1)/m
 Max: h = log base m [n(m-1)+1] - 1
 Internal vs External Nodes: e = (m-1)i + 1
+
+Representation of Binary Tree:
+Store the elements and preserve the relationships between them.
+Array: if an element it's at index i, its left child is at index 2*i, its
+right child at index 2*i+1 and its parent at i/2 (floor value). By filling the elements level by
+level, this formula will be automatically followed.
+Linked List: Node with data and two pointers for left child and right child (doubly linked list).
+Since it's a dynamic structure, it's created in heap. The leaf nodes have NULL pointers.
+For n Nodes, there are n+1 NULL pointers (similar to Strict Binary Tree's e=i+1)
+
 */
 
 int main(void)
