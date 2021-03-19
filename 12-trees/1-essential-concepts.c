@@ -68,7 +68,17 @@ right child at index 2*i+1 and its parent at i/2 (floor value). By filling the e
 level, this formula will be automatically followed.
 Linked List: Node with data and two pointers for left child and right child (doubly linked list).
 Since it's a dynamic structure, it's created in heap. The leaf nodes have NULL pointers.
-For n Nodes, there are n+1 NULL pointers (similar to Strict Binary Tree's e=i+1)
+For n Nodes, there are n+1 NULL pointers (similar to Strict Binary Tree's e=i+1).
+
+Full vs Complete Binary Tree:
+Full: binary tree of height h with its maximum number of nodes: n = 2^(h+1)-1
+In an array[7]: ABCDEFGH for a tree of height 2.
+Complete: no blank spaces between the elements, for height 2, in an array[7], ABCDEF_ _ would suffice.
+If it was: ABCD_ _E, that wouldn't be a complete binary tree.
+For arrays, we souldn't have spaces inside arrays (if an element is deleted, we should shift the rest),
+this is why we need complete binary trees. If the tree forces us to leave blank spaces, then it's not
+suitable for arrays. Full and Complete ones are suitable. Note: A complete is not always a full one, but
+a full one is always a complete one.
 
 */
 
