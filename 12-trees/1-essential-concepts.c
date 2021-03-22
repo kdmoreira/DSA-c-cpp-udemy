@@ -13,11 +13,11 @@ a single node can also be considered a tree)
 Binary Tree: nodes must have 0, 1 or 2 children.
 
 Number of binary trees using N nodes:
-1- Unlabelled nodes: Catalan formula: T(n)=(2n Cn)/n+1 i.e. T(5)=(2*5 C5)/5+1 -> T(5)=(10 C5)/6 ->
+1- Unlabeled nodes: Catalan formula: T(n)=(2n Cn)/n+1 i.e. T(5)=(2*5 C5)/5+1 -> T(5)=(10 C5)/6 ->
 T(5)=((10*9*8*7*6)/5!)/6 -> T(5) = 42 (combination formula)
 Other formula: T(n)=SUMMATION(upper limit: n, lower limit i=1) of T(i-1)*T(n-i), a recursive formula
 Max. height: 2^(n-1)
-2- Labelled nodes: T(n)=((2n Cn)/n+1)*n! -> Catalan formula for shapes * factorial for permutation/filling
+2- Labeled nodes: T(n)=((2n Cn)/n+1)*n! -> Catalan formula for shapes * factorial for permutation/filling
 
 Height vs Nodes: find height by n of nodes and vice-versa
 1- Height is given:
@@ -70,20 +70,35 @@ Linked List: Node with data and two pointers for left child and right child (dou
 Since it's a dynamic structure, it's created in heap. The leaf nodes have NULL pointers.
 For n Nodes, there are n+1 NULL pointers (similar to Strict Binary Tree's e=i+1).
 
-Full vs Complete Binary Tree:
+Full vs Complete Binary Trees:
 Full: binary tree of height h with its maximum number of nodes: n = 2^(h+1)-1
-In an array[7]: ABCDEFGH for a tree of height 2.
-Complete: no blank spaces between the elements, for height 2, in an array[7], ABCDEF_ _ would suffice.
+In an array[8]: ABCDEFGH for a tree of height 2.
+Complete: no blank spaces between the elements, for height 2, in an array[8], ABCDEF_ _ would suffice.
 If it was: ABCD_ _E, that wouldn't be a complete binary tree.
-For arrays, we souldn't have spaces inside arrays (if an element is deleted, we should shift the rest),
+For arrays, we shouldn't have spaces inside arrays (if an element is deleted, we should shift the rest),
 this is why we need complete binary trees. If the tree forces us to leave blank spaces, then it's not
 suitable for arrays. Full and Complete ones are suitable. Note: A complete is not always a full one, but
 a full one is always a complete one.
 
-*/
+Strict vs Complete Binary Trees: different terminology.
+Strict: also called "proper" binary trees, some also can call them "complete". However, contrary to the
+complete ones in the previous topic, they could have empty spaces between elements in an array, since the
+sole requirement is that every node can have either degree 0 or 2.
+Complete: (almost complete), when represented in an array there mustn't be any empty elements.
+
+Traversals:
+Visiting all the elements, in a linear or non-linear manner. The orders are known as:
+Preorder: visit(node)/root, preorder(left subtree), preorder(right subtree)
+Inorder: preorder(left subtree), visit(node)/root, preorder(right subtree)
+Postorder: preorder(left subtree), preorder(right subtree), visit(node)/root
+Level order: level by level (top to bottom).
+Tip: break a bigger problem into smaller ones, that is, a big tree into smaller subtrees.
+Easy Method 1: connecting nodes to a line below the tree.
+Easy Method 2: drawing a mark near the node and tracing along the borders of the tree.
+Easy Method 3: point your finger according to pre/in/post order and move it along the border,
+starting from above the root. */
 
 int main(void)
 {
-
     return 0;
 }
