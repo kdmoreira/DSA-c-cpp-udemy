@@ -87,7 +87,7 @@ int main(void)
     insert(HT, 26);
     insert(HT, 45);
 
-    display(HT);
+    display(HT); // 0 0 12 0 0 25 35 26 45 0
 
     printf("\nKey found at %d\n", search(HT, 45));
 
