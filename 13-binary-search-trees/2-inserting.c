@@ -80,14 +80,14 @@ int main(void)
     struct Node *root = NULL;
 
     root = rec_insert(root, 50);
-    root = rec_insert(root, 60);
-    root = rec_insert(root, 30);
-    root = rec_insert(root, 80);
+    rec_insert(root, 60);
+    rec_insert(root, 30);
+    rec_insert(root, 80);
 
-    root = loop_insert(root, 30);
-    root = loop_insert(root, 40);
-    root = loop_insert(root, 50);
-    root = loop_insert(root, 60);
+    loop_insert(root, 30);
+    loop_insert(root, 40);
+    loop_insert(root, 50);
+    loop_insert(root, 60);
 
     inorder(root);
 
