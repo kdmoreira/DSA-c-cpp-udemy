@@ -102,7 +102,23 @@ struct Node * RR_rotation(struct Node *p)
 
 struct Node * RL_rotation(struct Node *p)
 {
-    return NULL;
+    struct Node *pr = p->right;
+    struct Node *prl = pr->left;
+
+    pr->left = prl->right;
+    p->right = prl->left;
+
+    prl->right = pr;
+    prl->left = p;
+
+    p->height = node_height(p);
+    pr->height = node_height(pr);
+    prl->height = node_height(prl);
+
+    if (root == p)
+        root = prl;
+
+    return prl;
 }
 
 // Similar to the recursive insert used in a binary search tree
@@ -129,7 +145,6 @@ struct Node * rec_insert(struct Node *root, int key)
     // Update the height for every node at returning time
     root->height = node_height(root); // Should be equal to the maximum height of left or right subtree (the greatest one)
 
-    // Should perform a LL-rotation
     if (balance_factor(root) == 2 && balance_factor(root->left) == 1)
         return LL_rotation(root);
     if (balance_factor(root) == 2 && balance_factor(root->left) == -1)
@@ -155,14 +170,39 @@ void inorder(struct Node *p)
 int main(void)
 {
 
-    root = rec_insert(root, 20);
-    rec_insert(root, 25);
-    rec_insert(root, 10);
-    rec_insert(root, 11);
-    rec_insert(root, 5);
-    rec_insert(root, 12);
+    // Forcing a LL-Rotation
+    //root = rec_insert(root, 20);
+    //rec_insert(root, 15);
+    //rec_insert(root, 10);
 
-    inorder(root);
+    //inorder(root); // 10 15 20
+
+    // Forcing a RR-Rotation
+    //root = rec_insert(root, 20);
+    //rec_insert(root, 25);
+    //rec_insert(root, 30);
+
+    //inorder(root); // 20 25 30
+
+    // Forcing a LR-Rotation
+    //root = rec_insert(root, 20);
+    //rec_insert(root, 25);
+    //rec_insert(root, 10);
+    //rec_insert(root, 11);
+    //rec_insert(root, 5);
+    //rec_insert(root, 12);
+
+    //inorder(root); // 5 10 11 12 20 25
+
+    // Forcing a RL-Rotation
+    root = rec_insert(root, 20);
+    rec_insert(root, 15);
+    rec_insert(root, 25);
+    rec_insert(root, 24);
+    rec_insert(root, 30);
+    rec_insert(root, 23);
+
+    inorder(root); // 15 20 23 24 25 30
 
     return 0;
 }
