@@ -64,12 +64,40 @@ struct Node * LL_rotation(struct Node *p)
 
 struct Node * LR_rotation(struct Node *p)
 {
-    return NULL;
+    struct Node *pl = p->left;
+    struct Node *plr = pl->right;
+
+    pl->right = plr->left;
+    p->left = plr->right;
+
+    plr->left = pl;
+    plr->right = p;
+
+    pl->height = node_height(pl);
+    plr->height = node_height(plr);
+    p->height = node_height(p);
+
+    if (root == p)
+        root = plr;
+
+    return plr;
 }
 
 struct Node * RR_rotation(struct Node *p)
 {
-    return NULL;
+    struct Node *pr = p->right;
+    struct Node *prl = pr->left;
+
+    pr->left = p;
+    p->right = prl;
+
+    p->height = node_height(p);
+    pr->height = node_height(pr);
+
+    if (root == p)
+        root = pr;
+
+    return pr;
 }
 
 struct Node * RL_rotation(struct Node *p)
@@ -114,12 +142,27 @@ struct Node * rec_insert(struct Node *root, int key)
     return root;
 }
 
+void inorder(struct Node *p)
+{
+    if (p)
+    {
+        inorder(p->left);
+        printf("%d ", p->data);
+        inorder(p->right);
+    }
+}
+
 int main(void)
 {
 
-    root = rec_insert(root, 10);
+    root = rec_insert(root, 20);
+    rec_insert(root, 25);
+    rec_insert(root, 10);
+    rec_insert(root, 11);
     rec_insert(root, 5);
-    rec_insert(root, 2);
+    rec_insert(root, 12);
+
+    inorder(root);
 
     return 0;
 }
