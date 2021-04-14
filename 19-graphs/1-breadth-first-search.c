@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /* Graphs: collections of vertices (nodes) and edges (links): G = (V,E).
-Graphs are very useful for solving problems. Many of them can be converted into a graph.
+Graphs are very useful for solving problems. Many of real-world problems can be converted into graphs.
 
 Concepts: Directed, self-loop (a node connected to itself), parallel edges (two nodes connected
 to each other mutually), indegree of a vertex (n of edges pointing at it) and outdegree (n of edges
@@ -21,6 +21,23 @@ to where it started.
 Directed/Acyclic Graph: if you start from any vertex you can't reach the same vertex in any way.
 Topological ordering: directed/acyclic graphs can be arranged linearly such that edges go in a
 forward direction only.
+
+Representation of undirected graphs:
+1. Adjacency Matrix: if there's an edge between two vertices, 1, else, 0.
+For weighed edges, put the weight instead of 1 (cost adjency matrix). Time complexity: n x n = O(n^2)
+2. Adjacency List: an array (representing vertices) of linked lists (representing the vertices that
+are linked to it by edges). In case there's weight, store them inside each node along with the vertex name.
+Time complexity: |V|+2|E|, V for vertices in the array (n) and 2|E| since vertices are represented
+twice = n + 2E
+3. Compact List: using a simple array whose size is: |V|+2|E|+1 = 0 index vacant, first locations for
+each vertex (starting index of the adjacent vertices will go here), next location vacant, start adding
+the adjacent vertices for each vertex and add the starting index inside the previous locations.
+This means that the first indices (after zero) represent the vertices and the number inside each
+location will map to the starting index of their adjacent vertices. Between these locations there will
+be a vacant space meant to store the size+1 index of the array to indicate where the last vertex's
+adjacency list goes. For weighed graphs, a two-dimensional array would work.
+Time complexity: |v|+2|E| = n + 2n = 3n = O(n)
+
 
 */
 
