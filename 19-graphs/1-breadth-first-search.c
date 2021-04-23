@@ -38,6 +38,14 @@ be a vacant space meant to store the size+1 index of the array to indicate where
 adjacency list goes. For weighed graphs, a two-dimensional array would work.
 Time complexity: |v|+2|E| = n + 2n = 3n = O(n)
 
+Representation of directed graphs:
+1. Adjacency Matrix: similar to undirected graphs, but the edges won't go both ways. Time: O(n^2)
+Rows represent the edges going out (out-degree). Columns represent edges coming in (in-degree).
+2. Adjacency List: similar to undirected. Not possible to know in-degrees as easily as in an
+adjacency matrix, but instead you can make a inverse adjacency list. Time: |V|+|E|, n+e, n+n, O(n)
+3. Compact List also possible, just like undirected graphs.
+
+Breadth First Search:
 
 */
 
