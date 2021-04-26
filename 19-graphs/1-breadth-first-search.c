@@ -46,6 +46,14 @@ adjacency matrix, but instead you can make a inverse adjacency list. Time: |V|+|
 3. Compact List also possible, just like undirected graphs.
 
 Breadth First Search:
+Convert the graph into a tree (not necessarily a binary one) and take the level order.
+You can start from any vertex. This tree is called "BFS Spanning Tree". When edges form a
+cycle (they appear dotted in the tree) they are called cross edges.
+1. Visiting (visiting any vertex) & Exploring (visiting all adjacent vertices).
+Enqueue a vertex you visit. Then dequeue it and explore it (enqueueing each one you visit),
+then, dequeue the next one and explore it, repeating the process.
+There are many possible BF searches, depending on the starting vertices and the exploring order.
+Time taken: O(n)
 
 */
 
